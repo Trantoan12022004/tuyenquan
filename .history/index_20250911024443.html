@@ -3554,27 +3554,23 @@
                     chatInput.removeEventListener("keypress", handleChatKeyPress);
                     // Add keypress event listener
                     chatInput.addEventListener("keypress", handleChatKeyPress);
-
+                    
                     // Add touch events for mobile
-                    chatInput.addEventListener(
-                        "touchstart",
-                        function (e) {
-                            e.stopPropagation();
-                            setTimeout(() => {
-                                chatInput.focus();
-                            }, 100);
-                        },
-                        { passive: true }
-                    );
-
+                    chatInput.addEventListener("touchstart", function(e) {
+                        e.stopPropagation();
+                        setTimeout(() => {
+                            chatInput.focus();
+                        }, 100);
+                    }, {passive: true});
+                    
                     // Ensure input is focusable on mobile
-                    chatInput.addEventListener("click", function (e) {
+                    chatInput.addEventListener("click", function(e) {
                         e.stopPropagation();
                         chatInput.focus();
                     });
-
+                    
                     // Prevent keyboard from closing when typing
-                    chatInput.addEventListener("blur", function () {
+                    chatInput.addEventListener("blur", function() {
                         if (window.innerWidth <= 768) {
                             setTimeout(() => {
                                 if (document.activeElement !== chatInput) {
@@ -3612,17 +3608,14 @@
                             if (chatInput) {
                                 chatInput.focus();
                                 // Force cursor position for mobile
-                                chatInput.setSelectionRange(
-                                    chatInput.value.length,
-                                    chatInput.value.length
-                                );
+                                chatInput.setSelectionRange(chatInput.value.length, chatInput.value.length);
                             }
                         }, 500);
                     } else {
                         backdrop.classList.remove("show");
                         chatbotWindow.classList.remove("show");
                         document.body.style.overflow = "";
-
+                        
                         // Blur input when closing
                         const chatInput = document.getElementById("chatInput");
                         if (chatInput) {

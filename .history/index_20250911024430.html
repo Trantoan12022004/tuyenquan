@@ -935,19 +935,11 @@
                     -webkit-tap-highlight-color: transparent !important;
                     -webkit-user-select: text !important;
                     user-select: text !important;
-                    -webkit-touch-callout: default !important;
-                    -webkit-user-modify: read-write-plaintext-only !important;
-                    cursor: text !important;
                 }
 
                 #chatInput:focus {
                     border-color: #10b981 !important;
                     box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2) !important;
-                    -webkit-tap-highlight-color: transparent !important;
-                }
-
-                #chatInput:active {
-                    -webkit-tap-highlight-color: transparent !important;
                 }
 
                 /* Chat input area */
@@ -956,8 +948,6 @@
                     padding-bottom: calc(16px + env(safe-area-inset-bottom));
                     background: white;
                     border-top: 1px solid #e5e7eb;
-                    position: relative;
-                    z-index: 10;
                 }
 
                 /* Chat messages */
@@ -3554,27 +3544,23 @@
                     chatInput.removeEventListener("keypress", handleChatKeyPress);
                     // Add keypress event listener
                     chatInput.addEventListener("keypress", handleChatKeyPress);
-
+                    
                     // Add touch events for mobile
-                    chatInput.addEventListener(
-                        "touchstart",
-                        function (e) {
-                            e.stopPropagation();
-                            setTimeout(() => {
-                                chatInput.focus();
-                            }, 100);
-                        },
-                        { passive: true }
-                    );
-
+                    chatInput.addEventListener("touchstart", function(e) {
+                        e.stopPropagation();
+                        setTimeout(() => {
+                            chatInput.focus();
+                        }, 100);
+                    }, {passive: true});
+                    
                     // Ensure input is focusable on mobile
-                    chatInput.addEventListener("click", function (e) {
+                    chatInput.addEventListener("click", function(e) {
                         e.stopPropagation();
                         chatInput.focus();
                     });
-
+                    
                     // Prevent keyboard from closing when typing
-                    chatInput.addEventListener("blur", function () {
+                    chatInput.addEventListener("blur", function() {
                         if (window.innerWidth <= 768) {
                             setTimeout(() => {
                                 if (document.activeElement !== chatInput) {
@@ -3612,17 +3598,14 @@
                             if (chatInput) {
                                 chatInput.focus();
                                 // Force cursor position for mobile
-                                chatInput.setSelectionRange(
-                                    chatInput.value.length,
-                                    chatInput.value.length
-                                );
+                                chatInput.setSelectionRange(chatInput.value.length, chatInput.value.length);
                             }
                         }, 500);
                     } else {
                         backdrop.classList.remove("show");
                         chatbotWindow.classList.remove("show");
                         document.body.style.overflow = "";
-
+                        
                         // Blur input when closing
                         const chatInput = document.getElementById("chatInput");
                         if (chatInput) {
