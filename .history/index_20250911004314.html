@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuyển Thành Viên K16 - Đội Tình Nguyện CTES</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #059669 0%, #10b981 50%, #34d399 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg.active {
+            opacity: 0.3;
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse-button {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        
+        .step-indicator {
+            transition: all 0.3s ease;
+        }
+        
+        .step-indicator.active {
+            background: #10b981;
+            color: white;
+        }
+        
+        .step-indicator.completed {
+            background: #059669;
+            color: white;
+        }
+        
+        .form-step {
+            display: none;
+        }
+        
+        .form-step.active {
+            display: block;
+            animation: slideIn 0.5s ease-in-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        .toast.success {
+            background: #10b981;
+        }
+        
+        .toast.error {
+            background: #ef4444;
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .loading-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .chatbot-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #10b981;
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+        
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+        }
+        
+        .chatbot-window.show {
+            display: flex;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #10b981;
+            transform: translateY(-2px);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            width: 0%;
+            height: 4px;
+            background: #10b981;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="text-center">
+            <div class="spinner mx-auto mb-4"></div>
+            <p class="text-white text-lg">Đang tải...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="flex-shrink-0">
+                        <img src="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/logo.png" alt="CTES Logo" class="h-10 w-auto">
+                        h2
+                    </div>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-green-600 px-3 py-2 font-medium">Trang chủ</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-green-600 px-3 py-2 font-medium">Giới thiệu</a>
+                    <a href="#register" class="nav-link text-gray-700 hover:text-green-600 px-3 py-2 font-medium">Đăng ký</a>
+                    <a href="#faq" class="nav-link text-gray-700 hover:text-green-600 px-3 py-2 font-medium">FAQ</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-gray-700 hover:text-green-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-gray-700 hover:text-green-600">Trang chủ</a>
+                <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-green-600">Giới thiệu</a>
+                <a href="#register" class="block px-3 py-2 text-gray-700 hover:text-green-600">Đăng ký</a>
+                <a href="#faq" class="block px-3 py-2 text-gray-700 hover:text-green-600">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="fixed top-16 left-0 w-full h-1 bg-gray-200 z-40">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center pt-16">
+        <!-- Background Slides -->
+        <div class="slide-bg active" style="background-image: url('https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/banner.png');"></div>
+        <div class="slide-bg" style="background-image: linear-gradient(135deg, #059669, #10b981);"></div>
+        <div class="slide-bg" style="background-image: linear-gradient(135deg, #10b981, #34d399);"></div>
+        
+        <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="fade-in">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 floating-animation">
+                    Tuyển Thành Viên K16
+                </h1>
+                <p class="text-xl md:text-2xl text-green-100 mb-8 max-w-3xl mx-auto">
+                    Đội Tình Nguyện Các Chương Trình Chất Lượng Cao - CTES
+                </p>
+                
+                <!-- Timeline -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-12 max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-bold text-white mb-6">📅 Thời gian dự kiến</h3>
+                    <div class="grid md:grid-cols-3 gap-6 text-white">
+                        <div class="text-center">
+                            <div class="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-file-alt text-2xl"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">Vòng đơn</h4>
+                            <p class="text-green-100">22/09 – 28/09/2023</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-comments text-2xl"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">Vòng phỏng vấn</h4>
+                            <p class="text-green-100">29/09/2023</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-graduation-cap text-2xl"></i>
+                            </div>
+                            <h4 class="font-semibold mb-2">Vòng tập huấn</h4>
+                            <p class="text-green-100">03/10 – 31/10/2023</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="scrollToSection('register')" class="pulse-button bg-white text-green-600 px-8 py-4 rounded-full text-lg font-bold hover:bg-green-50 transition-all duration-300 transform hover:scale-105">
+                        <i class="fas fa-user-plus mr-2"></i>
+                        ĐĂNG KÝ NGAY
+                    </button>
+                    <button onclick="scrollToSection('about')" class="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white hover:text-green-600 transition-all duration-300">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Tìm hiểu thêm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Programs -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Các Chương Trình Của Đội</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Khám phá những hoạt động ý nghĩa và đầy thử thách</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                        <i class="fas fa-heart text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Hoạt động Tình Nguyện</h3>
+                        <p class="text-gray-600 mb-4">Tham gia các hoạt động thiện nguyện, giúp đỡ cộng đồng và lan tỏa yêu thương.</p>
+                        <button onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')" class="text-green-600 font-semibold hover:text-green-700">
+                            Xem thêm <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                        <i class="fas fa-users text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Kỹ Năng Mềm</h3>
+                        <p class="text-gray-600 mb-4">Phát triển kỹ năng giao tiếp, làm việc nhóm và lãnh đạo thông qua các workshop.</p>
+                        <button onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')" class="text-green-600 font-semibold hover:text-green-700">
+                            Xem thêm <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                        <i class="fas fa-calendar-alt text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Sự Kiện Lớn</h3>
+                        <p class="text-gray-600 mb-4">Tổ chức và tham gia các sự kiện quy mô lớn của trường và đội.</p>
+                        <button onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')" class="text-green-600 font-semibold hover:text-green-700">
+                            Xem thêm <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Activity Areas -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">5 Mảng Hoạt Động</h2>
+                <p class="text-xl text-gray-600">Tìm hiểu về các mảng hoạt động đa dạng của đội</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                <div class="text-center p-6 bg-green-50 rounded-2xl card-hover">
+                    <div class="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bullhorn text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Truyền thông – Đối ngoại</h3>
+                    <p class="text-gray-600">Quản lý fanpage, tạo nội dung, xây dựng hình ảnh đội</p>
+                </div>
+                
+                <div class="text-center p-6 bg-blue-50 rounded-2xl card-hover">
+                    <div class="bg-blue-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users-cog text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Nhân sự – Kỹ thuật</h3>
+                    <p class="text-gray-600">Quản lý thành viên, hỗ trợ kỹ thuật cho các hoạt động</p>
+                </div>
+                
+                <div class="text-center p-6 bg-purple-50 rounded-2xl card-hover">
+                    <div class="bg-purple-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-calendar-check text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Tổ chức – Sự kiện</h3>
+                    <p class="text-gray-600">Lên kế hoạch, tổ chức các sự kiện và hoạt động</p>
+                </div>
+                
+                <div class="text-center p-6 bg-orange-50 rounded-2xl card-hover">
+                    <div class="bg-orange-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-boxes text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Hậu cần</h3>
+                    <p class="text-gray-600">Chuẩn bị vật dụng, hỗ trợ logistics cho các hoạt động</p>
+                </div>
+                
+                <div class="text-center p-6 bg-red-50 rounded-2xl card-hover">
+                    <div class="bg-red-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-book text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Học tập</h3>
+                    <p class="text-gray-600">Tổ chức các buổi học, chia sẻ kiến thức và kinh nghiệm</p>
+                </div>
+            </div>
+
+            <!-- Benefits -->
+            <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-3xl p-12 text-white">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">Quyền Lợi Khi Tham Gia</h2>
+                    <p class="text-xl text-green-100">Những giá trị bạn nhận được khi là thành viên CTES</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-certificate text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">Chứng nhận</h3>
+                        <p class="text-green-100">Nhận chứng nhận tham gia hoạt động tình nguyện</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-network-wired text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">Mạng lưới</h3>
+                        <p class="text-green-100">Kết nối với sinh viên ưu tú từ nhiều trường</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-trophy text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">Kinh nghiệm</h3>
+                        <p class="text-green-100">Tích lũy kinh nghiệm thực tế quý báu</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-heart text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold mb-2">Ý nghĩa</h3>
+                        <p class="text-green-100">Đóng góp cho cộng đồng và xã hội</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section id="register" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Đăng Ký Tham Gia</h2>
+                <p class="text-xl text-gray-600">Hoàn thành form đăng ký để trở thành thành viên K16</p>
+            </div>
+
+            <!-- Step Indicator -->
+            <div class="flex justify-center mb-12">
+                <div class="flex items-center space-x-4">
+                    <div class="step-indicator active flex items-center justify-center w-10 h-10 rounded-full bg-gray-300 text-gray-600 font-bold">1</div>
+                    <div class="w-16 h-1 bg-gray-300"></div>
+                    <div class="step-indicator flex items-center justify-center w-10 h-10 rounded-full bg-gray-300 text-gray-600 font-bold">2</div>
+                    <div class="w-16 h-1 bg-gray-300"></div>
+                    <div class="step-indicator flex items-center justify-center w-10 h-10 rounded-full bg-gray-300 text-gray-600 font-bold">3</div>
+                    <div class="w-16 h-1 bg-gray-300"></div>
+                    <div class="step-indicator flex items-center justify-center w-10 h-10 rounded-full bg-gray-300 text-gray-600 font-bold">4</div>
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <form id="registrationForm" class="bg-white rounded-3xl shadow-xl p-8">
+                <!-- Step 1: Basic Information -->
+                <div class="form-step active" data-step="1">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Bước 1: Thông tin cơ bản</h3>
+                    <p class="text-gray-600 mb-8 text-center">Phần này giúp Ban Tổ chức nắm được thông tin cá nhân, liên hệ và nguồn bạn biết đến chương trình.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Họ và Tên *</label>
+                            <input type="text" name="fullName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">MSSV (Mã số sinh viên) *</label>
+                            <input type="text" name="studentId" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Giới tính *</label>
+                            <select name="gender" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                <option value="">Chọn giới tính</option>
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Trường/Viện/Hệ đào tạo *</label>
+                            <select name="school" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                <option value="">Chọn trường/viện</option>
+                                <option value="Trường Cao đẳng Nghề Bách khoa">Trường Cao đẳng Nghề Bách khoa</option>
+                                <option value="Trường Công nghệ Thông tin và Truyền thông">Trường Công nghệ Thông tin và Truyền thông</option>
+                                <option value="Trường Điện – Điện tử">Trường Điện – Điện tử</option>
+                                <option value="Trường Cơ khí">Trường Cơ khí</option>
+                                <option value="Trường Hóa và Khoa học Sự sống">Trường Hóa và Khoa học Sự sống</option>
+                                <option value="Trường Vật liệu">Trường Vật liệu</option>
+                                <option value="Viện Kinh tế và Quản lý">Viện Kinh tế và Quản lý</option>
+                                <option value="Viện Ngoại ngữ">Viện Ngoại ngữ</option>
+                                <option value="Viện Sư phạm Kỹ thuật">Viện Sư phạm Kỹ thuật</option>
+                                <option value="Viện Toán ứng dụng và Tin học">Viện Toán ứng dụng và Tin học</option>
+                                <option value="Viện Vật lý Kỹ thuật">Viện Vật lý Kỹ thuật</option>
+                                <option value="Viện Đào tạo Liên tục">Viện Đào tạo Liên tục</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                            <p class="text-sm text-gray-500 mt-1">Yêu cầu chính xác, có thể dùng email cá nhân hoặc email trường</p>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Số điện thoại *</label>
+                            <input type="tel" name="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Link Facebook *</label>
+                            <input type="url" name="facebook" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                            <p class="text-sm text-gray-500 mt-1">Để Ban Tổ chức tiện liên hệ hơn</p>
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Bạn biết đến chiến dịch qua đâu?</label>
+                            <select name="source" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                <option value="">Chọn nguồn thông tin</option>
+                                <option value="Mạng xã hội">Mạng xã hội</option>
+                                <option value="Giới thiệu của bạn bè, anh/chị">Giới thiệu của bạn bè, anh/chị</option>
+                                <option value="Bàn truyền thông">Bàn truyền thông</option>
+                                <option value="Khác">Khác</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end mt-8">
+                        <button type="button" onclick="nextStep()" class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                            Tiếp theo <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Self Description -->
+                <div class="form-step" data-step="2">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Bước 2: Miêu tả bản thân</h3>
+                    <p class="text-gray-600 mb-8 text-center">Mục này giúp Ban Tổ chức hiểu hơn về tính cách, sở thích, điểm mạnh – điểm yếu và kỹ năng của bạn.</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">3 từ miêu tả tính cách của bạn *</label>
+                            <input type="text" name="personality" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Ví dụ: Năng động, sáng tạo, trách nhiệm">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Điểm mạnh của bạn *</label>
+                            <textarea name="strengths" required rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Điểm yếu của bạn *</label>
+                            <textarea name="weaknesses" required rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Sở thích của bạn *</label>
+                            <textarea name="hobbies" required rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Bạn đã có những kỹ năng nào? (chọn một hoặc nhiều)</label>
+                            <div class="grid md:grid-cols-2 gap-3 mt-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="skills" value="Tin học văn phòng" class="mr-3 text-green-600">
+                                    Tin học văn phòng (Word, Excel, PowerPoint, ...)
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="skills" value="Thiết kế" class="mr-3 text-green-600">
+                                    Thiết kế (Photoshop, Illustrator, ...)
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="skills" value="Tổ chức sự kiện" class="mr-3 text-green-600">
+                                    Tổ chức sự kiện
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="skills" value="Thuyết trình, làm MC" class="mr-3 text-green-600">
+                                    Thuyết trình, làm MC
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="skills" value="Chụp ảnh" class="mr-3 text-green-600">
+                                    Chụp ảnh
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="skills" value="Viết bài, quản lý fanpage" class="mr-3 text-green-600">
+                                    Viết bài, quản lý fanpage
+                                </label>
+                                <label class="flex items-center md:col-span-2">
+                                    <input type="checkbox" name="skills" value="Khác" class="mr-3 text-green-600">
+                                    Khác
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-8">
+                        <button type="button" onclick="prevStep()" class="bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-600 transition-colors">
+                            <i class="fas fa-arrow-left mr-2"></i> Quay lại
+                        </button>
+                        <button type="button" onclick="nextStep()" class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                            Tiếp theo <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Aspirations -->
+                <div class="form-step" data-step="3">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Bước 3: Nguyện vọng bản thân</h3>
+                    <p class="text-gray-600 mb-8 text-center">Phần này tập trung vào lý do, mong muốn và định hướng của bạn khi tham gia Đội tình nguyện CTES.</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Nguyện vọng tham gia Mảng nào? *</label>
+                            <select name="department" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                <option value="">Chọn mảng hoạt động</option>
+                                <option value="Mảng Truyền thông – Đối ngoại">Mảng Truyền thông – Đối ngoại</option>
+                                <option value="Mảng Nhân sự – Kỹ thuật">Mảng Nhân sự – Kỹ thuật</option>
+                                <option value="Mảng Tổ chức – Sự kiện">Mảng Tổ chức – Sự kiện</option>
+                                <option value="Mảng Hậu cần">Mảng Hậu cần</option>
+                                <option value="Mảng Học tập">Mảng Học tập</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Điểm mạnh của bạn phù hợp với Mảng đã chọn là gì? *</label>
+                            <textarea name="departmentStrengths" required rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Kỹ năng, kinh nghiệm liên quan để hỗ trợ công việc Mảng bạn chọn *</label>
+                            <textarea name="relevantExperience" required rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Thể hiện thế mạnh bản thân (tùy chọn)</label>
+                            <input type="url" name="portfolio" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="Link Google Drive (ảnh/video/bài viết)">
+                            <p class="text-sm text-gray-500 mt-1">Gửi ảnh/video/bài viết bằng link Google Drive – nhớ chia sẻ quyền truy cập</p>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Bạn mong muốn điều gì khi tham gia Đội tình nguyện CTES? *</label>
+                            <textarea name="expectations" required rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-8">
+                        <button type="button" onclick="prevStep()" class="bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-600 transition-colors">
+                            <i class="fas fa-arrow-left mr-2"></i> Quay lại
+                        </button>
+                        <button type="button" onclick="nextStep()" class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                            Tiếp theo <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Thank You -->
+                <div class="form-step" data-step="4">
+                    <div class="text-center">
+                        <div class="mb-8">
+                            <i class="fas fa-check-circle text-6xl text-green-500 mb-4"></i>
+                            <h3 class="text-3xl font-bold mb-4">Cảm ơn bạn đã đăng ký!</h3>
+                            <p class="text-xl text-gray-600 mb-8">CẢM ƠN bạn đã tham gia Chương trình "Tuyển thành viên K16 – Đội Tình nguyện Các chương trình Chất lượng cao - CTES" 😍</p>
+                        </div>
+                        
+                        <div class="bg-green-50 rounded-2xl p-8 text-left max-w-2xl mx-auto">
+                            <h4 class="text-xl font-bold mb-6 text-center">📋 Thông tin quan trọng</h4>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <i class="fas fa-clock text-green-600 mt-1 mr-3"></i>
+                                    <div>
+                                        <strong>Hạn điền đơn:</strong> 23h59 ngày 28/09/2023
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <i class="fas fa-map-marker-alt text-green-600 mt-1 mr-3"></i>
+                                    <div>
+                                        <strong>Địa điểm:</strong> Đặt bàn tại sảnh D3 các ngày trong tuần
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <i class="fas fa-calendar-alt text-green-600 mt-1 mr-3"></i>
+                                    <div>
+                                        <strong>Thời gian dự kiến:</strong>
+                                        <ul class="mt-2 space-y-1 text-sm">
+                                            <li>• Vòng đơn: 22/09 – 28/09/2023</li>
+                                            <li>• Vòng phỏng vấn: 29/09/2023</li>
+                                            <li>• Vòng tập huấn: 03/10 – 31/10/2023</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <i class="fas fa-question-circle text-green-600 mt-1 mr-3"></i>
+                                    <div>
+                                        <strong>Mọi thắc mắc xin vui lòng liên hệ:</strong>
+                                        <ul class="mt-2 space-y-1 text-sm">
+                                            <li>• Fanpage: Đội Tình nguyện CTES</li>
+                                            <li>• TikTok: @doitinhnguyenctes11</li>
+                                            <li>• Email: ctes.doitinhnguyen.hust@gmail.com</li>
+                                            <li>• Đội trưởng: Phạm Trí Linh – 0943174698</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                            <button type="button" onclick="submitForm()" class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                                <i class="fas fa-paper-plane mr-2"></i>
+                                Gửi đăng ký
+                            </button>
+                            <button type="button" onclick="prevStep()" class="bg-gray-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-600 transition-colors">
+                                <i class="fas fa-arrow-left mr-2"></i> Quay lại chỉnh sửa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Câu Hỏi Thường Gặp</h2>
+                <p class="text-xl text-gray-600">Tìm hiểu thêm về chương trình tuyển thành viên</p>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="bg-gray-50 rounded-2xl p-6 card-hover">
+                    <button class="faq-question w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-semibold">Điều kiện để tham gia Đội tình nguyện CTES là gì?</h3>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden mt-4 text-gray-600">
+                        <p>Bạn cần là sinh viên đang học tại Đại học Bách khoa Hà Nội, có tinh thần tình nguyện, nhiệt huyết và sẵn sàng tham gia các hoạt động của đội.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-6 card-hover">
+                    <button class="faq-question w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-semibold">Quy trình tuyển chọn diễn ra như thế nào?</h3>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden mt-4 text-gray-600">
+                        <p>Quy trình gồm 3 vòng: Vòng đơn (22/09-28/09), Vòng phỏng vấn (29/09), và Vòng tập huấn (03/10-31/10). Mỗi vòng sẽ có những tiêu chí đánh giá khác nhau.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-6 card-hover">
+                    <button class="faq-question w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-semibold">Tôi có thể chọn nhiều mảng hoạt động không?</h3>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden mt-4 text-gray-600">
+                        <p>Trong đơn đăng ký, bạn chỉ chọn 1 mảng ưu tiên. Tuy nhiên, sau khi trở thành thành viên, bạn có thể tham gia hỗ trợ các mảng khác khi cần thiết.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-6 card-hover">
+                    <button class="faq-question w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-semibold">Thời gian hoạt động của đội như thế nào?</h3>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden mt-4 text-gray-600">
+                        <p>Đội có các hoạt động thường xuyên vào cuối tuần và các buổi tối. Thời gian cụ thể sẽ được thông báo trước để thành viên sắp xếp lịch học tập hợp lý.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-6 card-hover">
+                    <button class="faq-question w-full text-left flex justify-between items-center" onclick="toggleFAQ(this)">
+                        <h3 class="text-lg font-semibold">Tôi có nhận được chứng nhận khi tham gia không?</h3>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden mt-4 text-gray-600">
+                        <p>Có, bạn sẽ nhận được chứng nhận tham gia hoạt động tình nguyện từ nhà trường và các chứng nhận khác tùy theo mức độ đóng góp của bạn.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold mb-4">Đội Tình Nguyện CTES</h3>
+                    <p class="text-gray-300 mb-6">Đội Tình Nguyện Các Chương Trình Chất Lượng Cao - Nơi kết nối những trái tim nhiệt huyết vì cộng đồng.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://facebook.com/doitinhnguyenctes" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="https://tiktok.com/@doitinhnguyenctes11" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-tiktok text-xl"></i>
+                        </a>
+                        <a href="mailto:ctes.doitinhnguyen.hust@gmail.com" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Liên kết nhanh</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-300 hover:text-white transition-colors">Trang chủ</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors">Giới thiệu</a></li>
+                        <li><a href="#register" class="text-gray-300 hover:text-white transition-colors">Đăng ký</a></li>
+                        <li><a href="#faq" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Liên hệ</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-phone mr-2"></i>0943174698</li>
+                        <li><i class="fas fa-envelope mr-2"></i>ctes.doitinhnguyen.hust@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Sảnh D3, Đại học Bách khoa Hà Nội</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+                <p class="text-gray-300">&copy; 2023 Đội Tình Nguyện CTES. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot">
+        <button class="chatbot-button" onclick="toggleChatbot()">
+            <i class="fas fa-comments text-xl"></i>
+        </button>
+        
+        <div id="chatbotWindow" class="chatbot-window">
+            <div class="bg-green-600 text-white p-4 rounded-t-2xl">
+                <div class="flex justify-between items-center">
+                    <h4 class="font-semibold">Hỗ trợ CTES</h4>
+                    <button onclick="toggleChatbot()" class="text-white hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="flex-1 p-4 overflow-y-auto">
+                <div class="space-y-4">
+                    <div class="bg-gray-100 rounded-lg p-3">
+                        <p class="text-sm">Xin chào! Tôi có thể giúp gì cho bạn?</p>
+                    </div>
+                    
+                    <div class="space-y-2">
+                        <button onclick="askQuestion('Điều kiện tham gia là gì?')" class="w-full text-left bg-green-50 hover:bg-green-100 p-2 rounded text-sm transition-colors">
+                            Điều kiện tham gia là gì?
+                        </button>
+                        <button onclick="askQuestion('Quy trình tuyển chọn như thế nào?')" class="w-full text-left bg-green-50 hover:bg-green-100 p-2 rounded text-sm transition-colors">
+                            Quy trình tuyển chọn như thế nào?
+                        </button>
+                        <button onclick="askQuestion('Thời gian hoạt động ra sao?')" class="w-full text-left bg-green-50 hover:bg-green-100 p-2 rounded text-sm transition-colors">
+                            Thời gian hoạt động ra sao?
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-4 border-t">
+                <div class="flex">
+                    <input type="text" id="chatInput" placeholder="Nhập câu hỏi..." class="flex-1 px-3 py-2 border rounded-l-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <button onclick="sendMessage()" class="bg-green-600 text-white px-4 py-2 rounded-r-lg hover:bg-green-700 transition-colors">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentStep = 1;
+        let formData = {};
+        let slideIndex = 0;
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            showLoading();
+            setTimeout(() => {
+                hideLoading();
+                initializeSlideshow();
+                initializeSmoothScrolling();
+                initializeMobileMenu();
+                loadDraftData();
+            }, 1500);
+        });
+        
+        // Loading functions
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('show');
+        }
+        
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('show');
+        }
+        
+        // Toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Slideshow functionality
+        function initializeSlideshow() {
+            const slides = document.querySelectorAll('.slide-bg');
+            
+            setInterval(() => {
+                slides[slideIndex].classList.remove('active');
+                slideIndex = (slideIndex + 1) % slides.length;
+                slides[slideIndex].classList.add('active');
+            }, 5000);
+        }
+        
+        // Smooth scrolling
+        function initializeSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Progress bar
+            window.addEventListener('scroll', updateProgressBar);
+        }
+        
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+        
+        function updateProgressBar() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        }
+        
+        // Mobile menu
+        function initializeMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // Form step navigation
+        function nextStep() {
+            if (validateCurrentStep()) {
+                saveCurrentStepData();
+                saveDraftData();
+                
+                if (currentStep < 4) {
+                    currentStep++;
+                    showStep(currentStep);
+                    updateStepIndicator();
+                }
+            }
+        }
+        
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+                updateStepIndicator();
+            }
+        }
+        
+        function showStep(step) {
+            document.querySelectorAll('.form-step').forEach(stepEl => {
+                stepEl.classList.remove('active');
+            });
+            
+            const targetStep = document.querySelector(`[data-step="${step}"]`);
+            if (targetStep) {
+                targetStep.classList.add('active');
+            }
+        }
+        
+        function updateStepIndicator() {
+            document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
+                indicator.classList.remove('active', 'completed');
+                
+                if (index + 1 === currentStep) {
+                    indicator.classList.add('active');
+                } else if (index + 1 < currentStep) {
+                    indicator.classList.add('completed');
+                }
+            });
+        }
+        
+        // Form validation
+        function validateCurrentStep() {
+            const currentStepEl = document.querySelector(`[data-step="${currentStep}"]`);
+            const requiredFields = currentStepEl.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('border-red-500');
+                    isValid = false;
+                } else {
+                    field.classList.remove('border-red-500');
+                }
+            });
+            
+            if (!isValid) {
+                showToast('Vui lòng điền đầy đủ thông tin bắt buộc', 'error');
+            }
+            
+            return isValid;
+        }
+        
+        // Save form data
+        function saveCurrentStepData() {
+            const currentStepEl = document.querySelector(`[data-step="${currentStep}"]`);
+            const inputs = currentStepEl.querySelectorAll('input, select, textarea');
+            
+            inputs.forEach(input => {
+                if (input.type === 'checkbox') {
+                    if (!formData[input.name]) formData[input.name] = [];
+                    if (input.checked && !formData[input.name].includes(input.value)) {
+                        formData[input.name].push(input.value);
+                    }
+                } else {
+                    formData[input.name] = input.value;
+                }
+            });
+        }
+        
+        // Draft data management
+        function saveDraftData() {
+            localStorage.setItem('ctesRegistrationDraft', JSON.stringify(formData));
+            showToast('Đã lưu bản nháp tự động', 'success');
+        }
+        
+        function loadDraftData() {
+            const draftData = localStorage.getItem('ctesRegistrationDraft');
+            if (draftData) {
+                formData = JSON.parse(draftData);
+                populateFormWithData();
+                showToast('Đã khôi phục bản nháp', 'success');
+            }
+        }
+        
+        function populateFormWithData() {
+            Object.keys(formData).forEach(key => {
+                const elements = document.querySelectorAll(`[name="${key}"]`);
+                elements.forEach(element => {
+                    if (element.type === 'checkbox') {
+                        if (Array.isArray(formData[key]) && formData[key].includes(element.value)) {
+                            element.checked = true;
+                        }
+                    } else {
+                        element.value = formData[key];
+                    }
+                });
+            });
+        }
+        
+        // Form submission
+        function submitForm() {
+            showLoading();
+            
+            // Simulate form submission
+            setTimeout(() => {
+                hideLoading();
+                localStorage.removeItem('ctesRegistrationDraft');
+                showToast('Đăng ký thành công! Cảm ơn bạn đã tham gia.', 'success');
+                
+                // Send email notification (demo)
+                sendEmailNotification();
+            }, 2000);
+        }
+        
+        function sendEmailNotification() {
+            // This is a demo function - in real implementation, this would call a backend service
+            console.log('Sending email notification to:', formData.email);
+            console.log('Registration data:', formData);
+        }
+        
+        // FAQ functionality
+        function toggleFAQ(button) {
+            const answer = button.parentElement.querySelector('.faq-answer');
+            const icon = button.querySelector('i');
+            
+            answer.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+        
+        // Chatbot functionality
+        function toggleChatbot() {
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            chatbotWindow.classList.toggle('show');
+        }
+        
+        function askQuestion(question) {
+            const chatInput = document.getElementById('chatInput');
+            chatInput.value = question;
+            sendMessage();
+        }
+        
+        function sendMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const message = chatInput.value.trim();
+            
+            if (message) {
+                // Add user message to chat
+                addMessageToChat(message, 'user');
+                chatInput.value = '';
+                
+                // Simulate bot response
+                setTimeout(() => {
+                    const response = getBotResponse(message);
+                    addMessageToChat(response, 'bot');
+                }, 1000);
+            }
+        }
+        
+        function addMessageToChat(message, sender) {
+            const chatContainer = document.querySelector('.chatbot-window .overflow-y-auto');
+            const messageEl = document.createElement('div');
+            
+            if (sender === 'user') {
+                messageEl.className = 'bg-green-600 text-white rounded-lg p-3 ml-8';
+            } else {
+                messageEl.className = 'bg-gray-100 rounded-lg p-3 mr-8';
+            }
+            
+            messageEl.innerHTML = `<p class="text-sm">${message}</p>`;
+            chatContainer.appendChild(messageEl);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        
+        function getBotResponse(message) {
+            const responses = {
+                'điều kiện': 'Bạn cần là sinh viên Đại học Bách khoa Hà Nội, có tinh thần tình nguyện và nhiệt huyết.',
+                'quy trình': 'Quy trình gồm 3 vòng: Vòng đơn (22/09-28/09), Vòng phỏng vấn (29/09), và Vòng tập huấn (03/10-31/10).',
+                'thời gian': 'Đội có hoạt động chủ yếu vào cuối tuần và buổi tối, không ảnh hưởng đến việc học.',
+                'default': 'Cảm ơn bạn đã liên hệ! Vui lòng gọi 0943174698 hoặc email ctes.doitinhnguyen.hust@gmail.com để được hỗ trợ chi tiết hơn.'
+            };
+            
+            const lowerMessage = message.toLowerCase();
+            for (const key in responses) {
+                if (lowerMessage.includes(key)) {
+                    return responses[key];
+                }
+            }
+            
+            return responses.default;
+        }
+        
+        // External links
+        function openFacebookLink(url) {
+            window.open(url, '_blank');
+        }
+        
+        // Enter key support for chatbot
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && document.activeElement.id === 'chatInput') {
+                sendMessage();
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97d0ab0b13b90893',t:'MTc1NzUyNTU4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
