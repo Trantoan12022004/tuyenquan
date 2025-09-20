@@ -28,7 +28,7 @@
         />
         <meta
             property="og:image"
-            content="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/banner.png"
+            content="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/banner1.png"
         />
         <meta property="og:url" content="https://trantoan12022004.github.io/tuyenquan/" />
         <meta property="og:type" content="website" />
@@ -43,7 +43,7 @@
         />
         <meta
             name="twitter:image"
-            content="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/banner.png"
+            content="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/banner1.png"
         />
 
         <!-- Additional Meta Tags -->
@@ -96,7 +96,7 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: rgba(0, 0, 0, 0.3);
+                /* background: rgba(0, 0, 0, 0.3); */
                 z-index: 1;
             }
 
@@ -1016,17 +1016,18 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
                     <div class="flex items-center">
-                        <div class="flex-shrink-0 flex items-center">
+                        <div class="flex-shrink-0 flex items-center cursor-pointer">
                             <!-- Logo Container -->
                             <div class="flex items-center">
                                 <img
                                     src="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/logo.png"
                                     alt="CTES Logo"
                                     class="h-10 md:h-11 w-auto"
+                                    onclick="openFacebookLink('https://www.facebook.com/tinhnguyenctes')"
                                 />
 
                                 <!-- Text Content - Hidden on small mobile, visible on larger screens -->
-                                <div class="hidden sm:block ml-3 md:ml-5">
+                                <div class="hidden sm:block ml-3 md:ml-5 cursor-pointer hover:text-green-600" onclick="openFacebookLink('https://www.facebook.com/tinhnguyenctes')">
                                     <div
                                         class="text-sm md:text-xl font-semibold text-gray-800 leading-tight"
                                     >
@@ -1038,7 +1039,7 @@
                                 </div>
 
                                 <!-- Mobile Compact Text - Only visible on small screens -->
-                                <div class="block sm:hidden ml-2">
+                                <div class="block sm:hidden ml-2 cursor-pointer hover:text-green-600" onclick="openFacebookLink('https://www.facebook.com/tinhnguyenctes')">
                                     <div class="text-sm font-bold text-gray-800">
                                         Đội Tình nguyện
                                     </div>
@@ -1108,77 +1109,57 @@
         </div>
 
         <!-- Hero Section -->
-        <section
-            id="home"
-            class="hero-bg min-h-screen flex items-center pt-16 relative overflow-hidden"
-        >
+        <section id="home" class="hero-bg min-h-screen flex items-center pt-16 relative">
             <!-- Background Image -->
             <div
                 class="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style="
-                    background-image: url('https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/banner.png');
+                    background-image: url('https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/banner1.png');
                 "
             ></div>
 
             <!-- Overlay -->
-            <div class="absolute inset-0 bg-black/40"></div>
+            <!-- <div class="absolute inset-0 bg-black/40"></div> -->
 
             <!-- Gradient Overlay for better text readability -->
             <div
-                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"
-            ></div>
-
-            <!-- Floating particles for animation -->
-            <div
-                class="absolute top-20 left-10 w-4 h-4 bg-white/20 rounded-full floating-animation"
-            ></div>
-            <div
-                class="absolute top-40 right-20 w-6 h-6 bg-green-400/30 rounded-full floating-animation"
-                style="animation-delay: 1s"
-            ></div>
-            <div
-                class="absolute bottom-32 left-1/4 w-3 h-3 bg-yellow-300/40 rounded-full floating-animation"
-                style="animation-delay: 2s"
-            ></div>
-            <div
-                class="absolute top-1/3 right-1/3 w-5 h-5 bg-white/15 rounded-full floating-animation"
-                style="animation-delay: 0.5s"
+                class="absolute inset-x-0 bottom-0 h-[125%] md:h-[160%] bg-gradient-to-t from-black/90 via-transparent to-transparent"
             ></div>
 
             <div
-                class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
+                class="hero-content max-w-7xl mx-auto pt-60 px-4 sm:px-6 lg:px-8 text-center relative z-10"
             >
                 <!-- Main Title với hiệu ứng gradient -->
                 <h1
-                    class="text-6xl md:text-8xl lg:text-9xl pt-16 font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-green-200 to-green-300 mb-4 leading-tight drop-shadow-2xl"
+                    class="text-6xl md:text-8xl lg:text-9xl pt-16 font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-green-200 to-green-300 mb-10 leading-tight drop-shadow-2xl"
                 >
-                    TUYỂN THÀNH VIÊN 16
+                    <!-- TUYỂN THÀNH VIÊN K17 -->
                 </h1>
 
                 <!-- Enhanced Quick Stats với animation -->
                 <div
-                    class="rounded-3xl p-6 md:p-10 max-w-5xl mx-auto mb-10 border border-white/30 shadow-2xl"
+                    class="rounded-3xl p-6 md:p-10 max-w-5xl mx-auto mb-10 border border-white/30 shadow-2xl bg-black/2"
                 >
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                         <div class="text-center group hover:scale-105 transition-transform">
                             <div
-                                class="bg-gradient-to-br from-green-400/30 to-green-600/30 rounded-3xl w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mx-auto mb-4 backdrop-blur-sm border border-green-300/30 group-hover:shadow-lg group-hover:shadow-green-400/30"
+                                class="bg-gradient-to-br from-green-400/100 to-green-600/30 rounded-3xl w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mx-auto mb-4 backdrop-blur-sm border border-green-300/30 group-hover:shadow-lg group-hover:shadow-green-400/100"
                             >
                                 <i
                                     class="fas fa-calendar-alt text-2xl md:text-3xl text-green-200"
                                 ></i>
                             </div>
                             <div class="text-white font-bold text-sm md:text-base mb-1">
-                                Hạn nộp
+                                Vòng đơn
                             </div>
                             <div class="text-yellow-300 text-xs md:text-sm font-semibold">
-                                28/09/2024
+                                22/09 - 01/10/2024
                             </div>
                         </div>
 
                         <div class="text-center group hover:scale-105 transition-transform">
                             <div
-                                class="bg-gradient-to-br from-blue-400/30 to-blue-600/30 rounded-3xl w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mx-auto mb-4 backdrop-blur-sm border border-blue-300/30 group-hover:shadow-lg group-hover:shadow-blue-400/30"
+                                class="bg-gradient-to-br from-blue-400/100 to-blue-600/30 rounded-3xl w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mx-auto mb-4 backdrop-blur-sm border border-blue-300/30 group-hover:shadow-lg group-hover:shadow-blue-400/100"
                             >
                                 <i class="fas fa-users text-2xl md:text-3xl text-blue-200"></i>
                             </div>
@@ -1186,13 +1167,13 @@
                                 Phỏng vấn
                             </div>
                             <div class="text-yellow-300 text-xs md:text-sm font-semibold">
-                                29/09/2024
+                                03/10 - 04/10/2024
                             </div>
                         </div>
 
                         <div class="text-center group hover:scale-105 transition-transform">
                             <div
-                                class="bg-gradient-to-br from-purple-400/30 to-purple-600/30 rounded-3xl w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mx-auto mb-4 backdrop-blur-sm border border-purple-300/30 group-hover:shadow-lg group-hover:shadow-purple-400/30"
+                                class="bg-gradient-to-br from-purple-400/100 to-purple-600/30 rounded-3xl w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mx-auto mb-4 backdrop-blur-sm border border-purple-300/30 group-hover:shadow-lg group-hover:shadow-purple-400/100"
                             >
                                 <i
                                     class="fas fa-graduation-cap text-2xl md:text-3xl text-purple-200"
@@ -1202,13 +1183,13 @@
                                 Tập huấn
                             </div>
                             <div class="text-yellow-300 text-xs md:text-sm font-semibold">
-                                03-31/10
+                                06/10-02/11/2025
                             </div>
                         </div>
 
                         <div class="text-center group hover:scale-105 transition-transform">
                             <div
-                                class="bg-gradient-to-br from-orange-400/30 to-orange-600/30 rounded-3xl w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mx-auto mb-4 backdrop-blur-sm border border-orange-300/30 group-hover:shadow-lg group-hover:shadow-orange-400/30"
+                                class="bg-gradient-to-br from-orange-400/100 to-orange-600/30 rounded-3xl w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mx-auto mb-4 backdrop-blur-sm border border-orange-300/30 group-hover:shadow-lg group-hover:shadow-orange-400/100"
                             >
                                 <i
                                     class="fas fa-map-marker-alt text-2xl md:text-3xl text-orange-200"
@@ -1218,7 +1199,7 @@
                                 Địa điểm đặt bàn
                             </div>
                             <div class="text-yellow-300 text-xs md:text-sm font-semibold">
-                                Sảnh D3
+                                Sảnh D3 - HUST
                             </div>
                         </div>
                     </div>
@@ -1239,7 +1220,19 @@
                             class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"
                         ></div>
                     </button>
-
+                    <button
+                        onclick="openFacebookLink('https://www.facebook.com/tinhnguyenctes')"
+                        class="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-blue-600 text-white px-10 py-5 rounded-2xl text-xl font-bold hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-2xl shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-105 transform"
+                    >
+                        <span class="relative z-10 flex items-center justify-center">
+                            <i class="fab fa-facebook-f mr-3 text-xl"></i>
+                            FANPAGE
+                        </span>
+                        <!-- Button shine effect -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"
+                        ></div>
+                    </button>
                     <button
                         onclick="scrollToSection('about')"
                         class="group relative overflow-hidden border-3 border-white/80 bg-white/10 backdrop-blur-sm text-white px-10 py-5 rounded-2xl text-xl font-bold hover:bg-white hover:text-green-600 transition-all duration-300 shadow-2xl hover:scale-105 transform"
@@ -1249,13 +1242,6 @@
                             Tìm hiểu thêm
                         </span>
                     </button>
-                </div>
-
-                <!-- Scroll indicator -->
-                <div
-                    class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/70 animate-bounce"
-                >
-                    <i class="fas fa-chevron-down text-2xl"></i>
                 </div>
             </div>
         </section>
@@ -1285,18 +1271,20 @@
                                     <div
                                         class="h-48 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center"
                                     >
-                                        <i class="fas fa-heart text-6xl text-white"></i>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/mhx.png"
+                                            alt="mhx"
+                                        />
+                                        <!-- <i class="fas fa-heart text-6xl text-white"></i> -->
                                     </div>
                                     <div class="p-6">
-                                        <h3 class="text-xl font-bold mb-3">
-                                            Hoạt động Tình Nguyện
-                                        </h3>
+                                        <h3 class="text-xl font-bold mb-3">Mùa Hè Xanh</h3>
                                         <p class="text-gray-600 mb-4">
-                                            Tham gia các hoạt động thiện nguyện, giúp đỡ cộng đồng
-                                            và lan tỏa yêu thương.
+                                            Đi đến những vùng sâu, vùng xa để giúp đỡ bà con, mang
+                                            lại những điều thú vị đến cho trẻ em nơi đây.
                                         </p>
                                         <button
-                                            onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')"
+                                            onclick="openFacebookLink('https://www.facebook.com/tinhnguyenctes/videos/489562540430005')"
                                             class="text-green-600 font-semibold hover:text-green-700"
                                         >
                                             Xem thêm <i class="fas fa-arrow-right ml-1"></i>
@@ -1312,16 +1300,19 @@
                                     <div
                                         class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center"
                                     >
-                                        <i class="fas fa-users text-6xl text-white"></i>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/spc.png"
+                                            alt="ctes super cup"
+                                        />
                                     </div>
                                     <div class="p-6">
-                                        <h3 class="text-xl font-bold mb-3">Kỹ Năng Mềm</h3>
+                                        <h3 class="text-xl font-bold mb-3">CTES Super Cup</h3>
                                         <p class="text-gray-600 mb-4">
-                                            Phát triển kỹ năng giao tiếp, làm việc nhóm và lãnh đạo
-                                            thông qua các workshop.
+                                            Hoạt động thể thao thường niên, kết nối các thành viên
+                                            và rèn luyện sức khỏe.
                                         </p>
                                         <button
-                                            onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')"
+                                            onclick="openFacebookLink('https://www.facebook.com/tinhnguyenctes/posts/pfbid0267hg1FPv9sFCcnYeczrYAZe9KE1FPDzh1GWjYXnB9VS3ANJnPSnTNGK2v89X6zYSl')"
                                             class="text-green-600 font-semibold hover:text-green-700"
                                         >
                                             Xem thêm <i class="fas fa-arrow-right ml-1"></i>
@@ -1337,16 +1328,19 @@
                                     <div
                                         class="h-48 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center"
                                     >
-                                        <i class="fas fa-calendar-alt text-6xl text-white"></i>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/snd.png"
+                                            alt="ctes super cup"
+                                        />
                                     </div>
                                     <div class="p-6">
-                                        <h3 class="text-xl font-bold mb-3">Sự Kiện Lớn</h3>
+                                        <h3 class="text-xl font-bold mb-3">Sinh Nhật Đội</h3>
                                         <p class="text-gray-600 mb-4">
-                                            Tổ chức và tham gia các sự kiện quy mô lớn của trường và
-                                            đội.
+                                            Kỷ niệm ngày thành lập đội, kết nối các thành viên và ôn
+                                            lại những kỷ niệm đẹp.
                                         </p>
                                         <button
-                                            onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')"
+                                            onclick="openFacebookLink('https://www.facebook.com/tinhnguyenctes/videos/787169476473744')"
                                             class="text-green-600 font-semibold hover:text-green-700"
                                         >
                                             Xem thêm <i class="fas fa-arrow-right ml-1"></i>
@@ -1362,16 +1356,19 @@
                                     <div
                                         class="h-48 bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center"
                                     >
-                                        <i class="fas fa-graduation-cap text-6xl text-white"></i>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/trungthu.png"
+                                            alt="ctes super cup"
+                                        />
                                     </div>
                                     <div class="p-6">
-                                        <h3 class="text-xl font-bold mb-3">Đào Tạo Kỹ Năng</h3>
+                                        <h3 class="text-xl font-bold mb-3">Trung Thu Cho Em</h3>
                                         <p class="text-gray-600 mb-4">
-                                            Các khóa học và workshop nâng cao năng lực cá nhân và
-                                            nghề nghiệp.
+                                            Các hoạt động vui chơi, giải trí và học tập cho trẻ em
+                                            trong dịp Tết Trung Thu.
                                         </p>
                                         <button
-                                            onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')"
+                                            onclick="openFacebookLink('https://www.facebook.com/tinhnguyenctes/posts/pfbid02C5gQAY334mJm47o4sGCZFZ3A1vtpeimq1RvsHYEgEnSQkpWvP4mZcPzEYyzmRCVtl')"
                                             class="text-green-600 font-semibold hover:text-green-700"
                                         >
                                             Xem thêm <i class="fas fa-arrow-right ml-1"></i>
@@ -1387,16 +1384,19 @@
                                     <div
                                         class="h-48 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center"
                                     >
-                                        <i class="fas fa-handshake text-6xl text-white"></i>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/gameday.png"
+                                            alt="ctes super cup"
+                                        />
                                     </div>
                                     <div class="p-6">
-                                        <h3 class="text-xl font-bold mb-3">Hợp Tác Doanh Nghiệp</h3>
+                                        <h3 class="text-xl font-bold mb-3">GameDay</h3>
                                         <p class="text-gray-600 mb-4">
-                                            Kết nối với các doanh nghiệp để tạo cơ hội thực tập và
-                                            việc làm.
+                                            Hoạt động teambuilding thông qua các trò chơi tập thể
+                                            vui nhộn, giúp gắn kết các thành viên.
                                         </p>
                                         <button
-                                            onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')"
+                                            onclick="openFacebookLink('https://www.facebook.com/tinhnguyenctes/posts/pfbid02tJBvft2RLvq1WFGrJCsvEB9UMTWwN3QW9jYfb99oFKXcKxqXRcvYUMmjiX9eKxbAl')"
                                             class="text-green-600 font-semibold hover:text-green-700"
                                         >
                                             Xem thêm <i class="fas fa-arrow-right ml-1"></i>
@@ -1412,15 +1412,21 @@
                                     <div
                                         class="h-48 bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center"
                                     >
-                                        <i class="fas fa-globe text-6xl text-white"></i>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/game.png"
+                                            alt="ctes super cup"
+                                        />
                                     </div>
                                     <div class="p-6">
-                                        <h3 class="text-xl font-bold mb-3">Giao Lưu Quốc Tế</h3>
+                                        <h3 class="text-xl font-bold mb-3">
+                                            Giải Thể Thao Điện Tử
+                                        </h3>
                                         <p class="text-gray-600 mb-4">
-                                            Tham gia các chương trình trao đổi và hợp tác quốc tế.
+                                            Giải đấu thể thao điện tử dành cho các bạn yêu thích
+                                            game và muốn thử thách bản thân.
                                         </p>
                                         <button
-                                            onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')"
+                                            onclick="openFacebookLink('https://www.facebook.com/photo/?fbid=122115857210125376&set=a.122098848482125376')"
                                             class="text-green-600 font-semibold hover:text-green-700"
                                         >
                                             Xem thêm <i class="fas fa-arrow-right ml-1"></i>
@@ -1484,18 +1490,19 @@
                                     <div
                                         class="h-40 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center"
                                     >
-                                        <i class="fas fa-heart text-5xl text-white"></i>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/mhx.png"
+                                            alt="ctes super cup"
+                                        />
                                     </div>
                                     <div class="p-5">
-                                        <h3 class="text-lg font-bold mb-2">
-                                            Hoạt động Tình Nguyện
-                                        </h3>
+                                        <h3 class="text-lg font-bold mb-2">Mùa Hè Xanh</h3>
                                         <p class="text-gray-600 text-sm mb-3">
-                                            Tham gia các hoạt động thiện nguyện, giúp đỡ cộng đồng
-                                            và lan tỏa yêu thương.
+                                            Đi đến những vùng sâu, vùng xa để giúp đỡ bà con, mang
+                                            lại những điều thú vị đến cho trẻ em nơi đây.
                                         </p>
                                         <button
-                                            onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')"
+                                            onclick="openFacebookLink('https://www.facebook.com/tinhnguyenctes/videos/489562540430005')"
                                             class="text-green-600 font-semibold hover:text-green-700 text-sm"
                                         >
                                             Xem thêm <i class="fas fa-arrow-right ml-1"></i>
@@ -1509,16 +1516,19 @@
                                     <div
                                         class="h-40 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center"
                                     >
-                                        <i class="fas fa-users text-5xl text-white"></i>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/spc.png"
+                                            alt="ctes super cup"
+                                        />
                                     </div>
                                     <div class="p-5">
-                                        <h3 class="text-lg font-bold mb-2">Kỹ Năng Mềm</h3>
+                                        <h3 class="text-lg font-bold mb-2">CTES Super Cup</h3>
                                         <p class="text-gray-600 text-sm mb-3">
-                                            Phát triển kỹ năng giao tiếp, làm việc nhóm và lãnh đạo
-                                            thông qua các workshop.
+                                            Hoạt động thể thao thường niên, kết nối các thành viên
+                                            và rèn luyện sức khỏe.
                                         </p>
                                         <button
-                                            onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')"
+                                            onclick="openFacebookLink('https://www.facebook.com/tinhnguyenctes/posts/pfbid0267hg1FPv9sFCcnYeczrYAZe9KE1FPDzh1GWjYXnB9VS3ANJnPSnTNGK2v89X6zYSl')"
                                             class="text-green-600 font-semibold hover:text-green-700 text-sm"
                                         >
                                             Xem thêm <i class="fas fa-arrow-right ml-1"></i>
@@ -1532,20 +1542,23 @@
                                     <div
                                         class="h-40 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center"
                                     >
-                                        <i class="fas fa-calendar-alt text-5xl text-white"></i>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/snd.png"
+                                            alt="ctes super cup"
+                                        />
                                     </div>
                                     <div class="p-5">
-                                        <h3 class="text-lg font-bold mb-2">Sự Kiện Lớn</h3>
+                                        <h3 class="text-lg font-bold mb-2">Sinh Nhật Đội</h3>
                                         <p class="text-gray-600 text-sm mb-3">
-                                            Tổ chức và tham gia các sự kiện quy mô lớn của trường và
-                                            đội.
+                                            Kỷ niệm ngày thành lập đội, kết nối các thành viên và ôn
+                                            lại những kỷ niệm đẹp.
+                                            <button
+                                                onclick="openFacebookLink('https://www.facebook.com/tinhnguyenctes/videos/787169476473744')"
+                                                class="text-green-600 font-semibold hover:text-green-700 text-sm"
+                                            >
+                                                Xem thêm <i class="fas fa-arrow-right ml-1"></i>
+                                            </button>
                                         </p>
-                                        <button
-                                            onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')"
-                                            class="text-green-600 font-semibold hover:text-green-700 text-sm"
-                                        >
-                                            Xem thêm <i class="fas fa-arrow-right ml-1"></i>
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -1555,16 +1568,19 @@
                                     <div
                                         class="h-40 bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center"
                                     >
-                                        <i class="fas fa-graduation-cap text-5xl text-white"></i>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/trungthu.png"
+                                            alt="ctes super cup"
+                                        />
                                     </div>
                                     <div class="p-5">
-                                        <h3 class="text-lg font-bold mb-2">Đào Tạo Kỹ Năng</h3>
+                                        <h3 class="text-lg font-bold mb-2">Trung Thu Cho Em</h3>
                                         <p class="text-gray-600 text-sm mb-3">
-                                            Các khóa học và workshop nâng cao năng lực cá nhân và
-                                            nghề nghiệp.
+                                            Các hoạt động vui chơi, giải trí và học tập cho trẻ em
+                                            trong dịp Tết Trung Thu.
                                         </p>
                                         <button
-                                            onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')"
+                                            onclick="openFacebookLink('https://www.facebook.com/tinhnguyenctes/posts/pfbid02C5gQAY334mJm47o4sGCZFZ3A1vtpeimq1RvsHYEgEnSQkpWvP4mZcPzEYyzmRCVtl')"
                                             class="text-green-600 font-semibold hover:text-green-700 text-sm"
                                         >
                                             Xem thêm <i class="fas fa-arrow-right ml-1"></i>
@@ -1578,16 +1594,19 @@
                                     <div
                                         class="h-40 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center"
                                     >
-                                        <i class="fas fa-handshake text-5xl text-white"></i>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/gameday.png"
+                                            alt="ctes super cup"
+                                        />
                                     </div>
                                     <div class="p-5">
-                                        <h3 class="text-lg font-bold mb-2">Hợp Tác Doanh Nghiệp</h3>
+                                        <h3 class="text-lg font-bold mb-2">GameDay</h3>
                                         <p class="text-gray-600 text-sm mb-3">
-                                            Kết nối với các doanh nghiệp để tạo cơ hội thực tập và
-                                            việc làm.
+                                            Hoạt động teambuilding thông qua các trò chơi tập thể
+                                            vui nhộn, giúp gắn kết các thành viên.
                                         </p>
                                         <button
-                                            onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')"
+                                            onclick="openFacebookLink('https://www.facebook.com/tinhnguyenctes/posts/pfbid02tJBvft2RLvq1WFGrJCsvEB9UMTWwN3QW9jYfb99oFKXcKxqXRcvYUMmjiX9eKxbAl')"
                                             class="text-green-600 font-semibold hover:text-green-700 text-sm"
                                         >
                                             Xem thêm <i class="fas fa-arrow-right ml-1"></i>
@@ -1601,15 +1620,21 @@
                                     <div
                                         class="h-40 bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center"
                                     >
-                                        <i class="fas fa-globe text-5xl text-white"></i>
+                                        <img
+                                            src="https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/game.png"
+                                            alt="ctes super cup"
+                                        />
                                     </div>
                                     <div class="p-5">
-                                        <h3 class="text-lg font-bold mb-2">Giao Lưu Quốc Tế</h3>
+                                        <h3 class="text-lg font-bold mb-2">
+                                            Giải Thể Thao Điện Tử
+                                        </h3>
                                         <p class="text-gray-600 text-sm mb-3">
-                                            Tham gia các chương trình trao đổi và hợp tác quốc tế.
+                                            Giải đấu thể thao điện tử dành cho các bạn yêu thích
+                                            game và muốn thử thách bản thân.
                                         </p>
                                         <button
-                                            onclick="openFacebookLink('https://facebook.com/doitinhnguyenctes')"
+                                            onclick="openFacebookLink('https://www.facebook.com/photo/?fbid=122115857210125376&set=a.122098848482125376')"
                                             class="text-green-600 font-semibold hover:text-green-700 text-sm"
                                         >
                                             Xem thêm <i class="fas fa-arrow-right ml-1"></i>
@@ -1843,9 +1868,9 @@
                             >
                                 <i class="fas fa-certificate text-2xl"></i>
                             </div>
-                            <h3 class="font-bold mb-3 text-lg">Chứng nhận</h3>
+                            <h3 class="font-bold mb-3 text-lg">Điểm rèn luyện</h3>
                             <p class="text-green-100">
-                                Nhận chứng nhận tham gia hoạt động tình nguyện từ trường
+                                Nhận được điểm rèn luyện cho các hoạt động tình nguyện.
                             </p>
                         </div>
 
@@ -1857,9 +1882,11 @@
                             >
                                 <i class="fas fa-network-wired text-2xl"></i>
                             </div>
-                            <h3 class="font-bold mb-3 text-lg">Mạng lưới</h3>
+                            <h3 class="font-bold mb-3 text-lg">Hỗ trợ học tập</h3>
                             <p class="text-green-100">
-                                Kết nối với sinh viên ưu tú từ nhiều trường đại học
+                                Với sự hỗ trợ từ các anh chị ở mảng Hỗ trợ học tập, bạn sẽ được hỗ
+                                trợ trong việc học tập các môn đại cương và các kỹ năng mềm cần
+                                thiết.
                             </p>
                         </div>
 
@@ -1871,9 +1898,9 @@
                             >
                                 <i class="fas fa-trophy text-2xl"></i>
                             </div>
-                            <h3 class="font-bold mb-3 text-lg">Kinh nghiệm</h3>
+                            <h3 class="font-bold mb-3 text-lg">Mở rộng quan hệ</h3>
                             <p class="text-green-100">
-                                Tích lũy kinh nghiệm thực tế quý báu cho tương lai
+                                Kết nối với mọi người và mở rộng mạng lưới quan hệ cá nhân.
                             </p>
                         </div>
 
@@ -1909,9 +1936,9 @@
                                         >
                                             <i class="fas fa-certificate text-2xl"></i>
                                         </div>
-                                        <h3 class="font-bold mb-3 text-lg">Chứng nhận</h3>
+                                        <h3 class="font-bold mb-3 text-lg">Điểm rèn luyện</h3>
                                         <p class="text-green-100">
-                                            Nhận chứng nhận tham gia hoạt động tình nguyện từ trường
+                                            Nhận được điểm rèn luyện cho các hoạt động tình nguyện.
                                         </p>
                                     </div>
                                 </div>
@@ -1925,9 +1952,11 @@
                                         >
                                             <i class="fas fa-network-wired text-2xl"></i>
                                         </div>
-                                        <h3 class="font-bold mb-3 text-lg">Mạng lưới</h3>
+                                        <h3 class="font-bold mb-3 text-lg">Hỗ trợ học tập</h3>
                                         <p class="text-green-100">
-                                            Kết nối với sinh viên ưu tú từ nhiều trường đại học
+                                            Với sự hỗ trợ từ các anh chị ở mảng Hỗ trợ học tập, bạn
+                                            sẽ được hỗ trợ trong việc học tập các môn đại cương và
+                                            các kỹ năng mềm cần thiết.
                                         </p>
                                     </div>
                                 </div>
@@ -1941,9 +1970,10 @@
                                         >
                                             <i class="fas fa-trophy text-2xl"></i>
                                         </div>
-                                        <h3 class="font-bold mb-3 text-lg">Kinh nghiệm</h3>
+                                        <h3 class="font-bold mb-3 text-lg">Mở rộng mối quan hệ</h3>
                                         <p class="text-green-100">
-                                            Tích lũy kinh nghiệm thực tế quý báu cho tương lai
+                                            Kết nối với mọi người và mở rộng mạng lưới quan hệ cá
+                                            nhân.
                                         </p>
                                     </div>
                                 </div>
@@ -2268,25 +2298,35 @@
                                     >Bạn đã có những kỹ năng nào? (chọn một hoặc nhiều)</label
                                 >
                                 <div class="grid md:grid-cols-2 gap-3 mt-3" id="skillsContainer">
-                                    <label class="skill-checkbox-label flex items-center cursor-pointer p-3 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200">
+                                    <label
+                                        class="skill-checkbox-label flex items-center cursor-pointer p-3 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200"
+                                    >
                                         <input
                                             type="checkbox"
                                             name="skills"
                                             value="Tin học văn phòng"
                                             class="skill-checkbox mr-3 w-5 h-5 text-green-600 border-gray-300 rounded focus:ring-green-500"
                                         />
-                                        <span class="text-sm text-gray-700">Tin học văn phòng (Word, Excel, PowerPoint, ...)</span>
+                                        <span class="text-sm text-gray-700"
+                                            >Tin học văn phòng (Word, Excel, PowerPoint, ...)</span
+                                        >
                                     </label>
-                                    <label class="skill-checkbox-label flex items-center cursor-pointer p-3 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200">
+                                    <label
+                                        class="skill-checkbox-label flex items-center cursor-pointer p-3 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200"
+                                    >
                                         <input
                                             type="checkbox"
                                             name="skills"
                                             value="Thiết kế"
                                             class="skill-checkbox mr-3 w-5 h-5 text-green-600 border-gray-300 rounded focus:ring-green-500"
                                         />
-                                        <span class="text-sm text-gray-700">Thiết kế (Photoshop, Illustrator, ...)</span>
+                                        <span class="text-sm text-gray-700"
+                                            >Thiết kế (Photoshop, Illustrator, ...)</span
+                                        >
                                     </label>
-                                    <label class="skill-checkbox-label flex items-center cursor-pointer p-3 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200">
+                                    <label
+                                        class="skill-checkbox-label flex items-center cursor-pointer p-3 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200"
+                                    >
                                         <input
                                             type="checkbox"
                                             name="skills"
@@ -2295,16 +2335,22 @@
                                         />
                                         <span class="text-sm text-gray-700">Tổ chức sự kiện</span>
                                     </label>
-                                    <label class="skill-checkbox-label flex items-center cursor-pointer p-3 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200">
+                                    <label
+                                        class="skill-checkbox-label flex items-center cursor-pointer p-3 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200"
+                                    >
                                         <input
                                             type="checkbox"
                                             name="skills"
                                             value="Thuyết trình, làm MC"
                                             class="skill-checkbox mr-3 w-5 h-5 text-green-600 border-gray-300 rounded focus:ring-green-500"
                                         />
-                                        <span class="text-sm text-gray-700">Thuyết trình, làm MC</span>
+                                        <span class="text-sm text-gray-700"
+                                            >Thuyết trình, làm MC</span
+                                        >
                                     </label>
-                                    <label class="skill-checkbox-label flex items-center cursor-pointer p-3 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200">
+                                    <label
+                                        class="skill-checkbox-label flex items-center cursor-pointer p-3 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200"
+                                    >
                                         <input
                                             type="checkbox"
                                             name="skills"
@@ -2313,16 +2359,22 @@
                                         />
                                         <span class="text-sm text-gray-700">Chụp ảnh</span>
                                     </label>
-                                    <label class="skill-checkbox-label flex items-center cursor-pointer p-3 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200">
+                                    <label
+                                        class="skill-checkbox-label flex items-center cursor-pointer p-3 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200"
+                                    >
                                         <input
                                             type="checkbox"
                                             name="skills"
                                             value="Viết bài, quản lý fanpage"
                                             class="skill-checkbox mr-3 w-5 h-5 text-green-600 border-gray-300 rounded focus:ring-green-500"
                                         />
-                                        <span class="text-sm text-gray-700">Viết bài, quản lý fanpage</span>
+                                        <span class="text-sm text-gray-700"
+                                            >Viết bài, quản lý fanpage</span
+                                        >
                                     </label>
-                                    <label class="skill-checkbox-label flex items-center cursor-pointer p-3 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200 md:col-span-2">
+                                    <label
+                                        class="skill-checkbox-label flex items-center cursor-pointer p-3 rounded-lg border border-gray-200 hover:border-green-300 hover:bg-green-50 transition-all duration-200 md:col-span-2"
+                                    >
                                         <input
                                             type="checkbox"
                                             name="skills"
@@ -2468,7 +2520,7 @@
                                 <i class="fas fa-check-circle text-6xl text-green-500 mb-4"></i>
                                 <h3 class="text-3xl font-bold mb-4">Cảm ơn bạn đã đăng ký!</h3>
                                 <p class="text-xl text-gray-600 mb-8">
-                                    CẢM ƠN bạn đã tham gia Chương trình "Tuyển thành viên K16 – Đội
+                                    CẢM ƠN bạn đã tham gia Chương trình "Tuyển thành viên K17 – Đội
                                     Tình nguyện Các chương trình Chất lượng cao - CTES" 😍
                                 </p>
                             </div>
@@ -2482,7 +2534,7 @@
                                     <div class="flex items-start">
                                         <i class="fas fa-clock text-green-600 mt-1 mr-3"></i>
                                         <div>
-                                            <strong>Hạn điền đơn:</strong> 23h59 ngày 28/09/2024
+                                            <strong>Hạn điền đơn:</strong> 01/10/2025 (23:59)
                                         </div>
                                     </div>
 
@@ -2491,8 +2543,7 @@
                                             class="fas fa-map-marker-alt text-green-600 mt-1 mr-3"
                                         ></i>
                                         <div>
-                                            <strong>Địa điểm:</strong> Đặt bàn tại sảnh D3 các ngày
-                                            trong tuần
+                                            <strong>Địa điểm:</strong> Đặt bàn tại sảnh D3
                                         </div>
                                     </div>
 
@@ -2501,9 +2552,9 @@
                                         <div>
                                             <strong>Thời gian dự kiến:</strong>
                                             <ul class="mt-2 space-y-1 text-sm">
-                                                <li>• Vòng đơn: 22/09 – 28/09/2024</li>
-                                                <li>• Vòng phỏng vấn: 29/09/2024</li>
-                                                <li>• Vòng tập huấn: 03/10 – 31/10/2024</li>
+                                                <li>• Vòng đơn: 22/09 – 01/10/2025</li>
+                                                <li>• Vòng phỏng vấn: 03/10 – 04/10/2024</li>
+                                                <li>• Vòng tập huấn: 06/10 – 02/11/2024</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -2518,7 +2569,7 @@
                                                 <li>• Fanpage: Đội Tình nguyện CTES</li>
                                                 <li>• TikTok: @doitinhnguyenctes11</li>
                                                 <li>• Email: ctes.doitinhnguyen.hust@gmail.com</li>
-                                                <li>• Đội trưởng: Phạm Trí Linh – 0943174698</li>
+                                                <li>• Đội trưởng: Nguyễn Khắc Quang - 0978895284</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -2571,9 +2622,9 @@
                         </button>
                         <div class="faq-answer hidden mt-4 text-gray-600">
                             <p>
-                                Bạn cần là sinh viên đang học tại Đại học Bách khoa Hà Nội, có tinh
-                                thần tình nguyện, nhiệt huyết và sẵn sàng tham gia các hoạt động của
-                                đội.
+                                Bạn cần là sinh viên tại bất kì ngành học nào, trường đại học nào,
+                                có tinh thần tình nguyện, nhiệt huyết và sẵn sàng tham gia các hoạt
+                                động của đội.
                             </p>
                         </div>
                     </div>
@@ -2590,9 +2641,8 @@
                         </button>
                         <div class="faq-answer hidden mt-4 text-gray-600">
                             <p>
-                                Quy trình gồm 3 vòng: Vòng đơn (22/09-28/09), Vòng phỏng vấn
-                                (29/09), và Vòng tập huấn (03/10-31/10). Mỗi vòng sẽ có những tiêu
-                                chí đánh giá khác nhau.
+                                Quy trình gồm 3 vòng: Vòng đơn, Vòng Phỏng Vấn và Vòng Tập Huấn. Mỗi
+                                vòng sẽ đánh giá các khía cạnh khác nhau của ứng viên.
                             </p>
                         </div>
                     </div>
@@ -2628,9 +2678,7 @@
                         </button>
                         <div class="faq-answer hidden mt-4 text-gray-600">
                             <p>
-                                Đội có các hoạt động thường xuyên vào cuối tuần và các buổi tối.
-                                Thời gian cụ thể sẽ được thông báo trước để thành viên sắp xếp lịch
-                                học tập hợp lý.
+                                Đội có các hoạt động thường xuyên vào chiều thứ 3 hàng tuần (17h50).
                             </p>
                         </div>
                     </div>
@@ -2688,7 +2736,7 @@
                         </p>
                         <div class="flex space-x-4">
                             <a
-                                href="https://facebook.com/doitinhnguyenctes"
+                                href="https://www.facebook.com/tinhnguyenctes"
                                 class="text-gray-300 hover:text-white transition-colors"
                             >
                                 <i class="fab fa-facebook-f text-xl"></i>
@@ -2760,7 +2808,7 @@
 
                 <div class="border-t border-gray-700 mt-12 pt-8 text-center">
                     <p class="text-gray-300">
-                        &copy; 2024 Đội Tình Nguyện CTES. Tất cả quyền được bảo lưu.
+                        &copy; 2025 Đội Tình Nguyện CTES. Tất cả quyền được bảo lưu.
                     </p>
                 </div>
             </div>
@@ -3241,91 +3289,102 @@
 
             // Enhanced skills checkboxes setup for mobile
             function setupSkillsCheckboxes() {
-                const skillsCheckboxes = document.querySelectorAll('.skill-checkbox');
-                const skillsLabels = document.querySelectorAll('.skill-checkbox-label');
+                const skillsCheckboxes = document.querySelectorAll(".skill-checkbox");
+                const skillsLabels = document.querySelectorAll(".skill-checkbox-label");
 
                 skillsCheckboxes.forEach((checkbox, index) => {
                     const label = skillsLabels[index];
-                    
+
                     // Handle checkbox change
-                    checkbox.addEventListener('change', function(e) {
-                        console.log('Skill changed:', this.value, 'Checked:', this.checked);
-                        
+                    checkbox.addEventListener("change", function (e) {
+                        console.log("Skill changed:", this.value, "Checked:", this.checked);
+
                         // Update label appearance
                         if (this.checked) {
-                            label.classList.add('checked');
+                            label.classList.add("checked");
                         } else {
-                            label.classList.remove('checked');
+                            label.classList.remove("checked");
                         }
-                        
+
                         // Save form data immediately
                         saveCurrentStepData();
-                        
+
                         // Add haptic feedback on mobile
                         if (navigator.vibrate) {
                             navigator.vibrate(50);
                         }
-                        
+
                         // Visual feedback
-                        label.style.transform = 'scale(0.98)';
+                        label.style.transform = "scale(0.98)";
                         setTimeout(() => {
-                            label.style.transform = '';
+                            label.style.transform = "";
                         }, 150);
                     });
 
                     // Handle label click (better for mobile)
-                    label.addEventListener('click', function(e) {
+                    label.addEventListener("click", function (e) {
                         // Ensure only the label click toggles, not the checkbox click
-                        if (e.target === this || e.target.tagName === 'SPAN') {
+                        if (e.target === this || e.target.tagName === "SPAN") {
                             e.preventDefault();
                             checkbox.checked = !checkbox.checked;
-                            checkbox.dispatchEvent(new Event('change'));
+                            checkbox.dispatchEvent(new Event("change"));
                         }
                     });
 
                     // Prevent double-tap zoom on mobile
-                    label.addEventListener('touchstart', function(e) {
-                        // Add immediate visual feedback
-                        this.style.transform = 'scale(0.98)';
-                        this.style.backgroundColor = '#f0fdf4';
-                        this.style.borderColor = '#10b981';
-                    }, { passive: true });
+                    label.addEventListener(
+                        "touchstart",
+                        function (e) {
+                            // Add immediate visual feedback
+                            this.style.transform = "scale(0.98)";
+                            this.style.backgroundColor = "#f0fdf4";
+                            this.style.borderColor = "#10b981";
+                        },
+                        { passive: true }
+                    );
 
-                    label.addEventListener('touchend', function(e) {
-                        // Reset visual state
-                        setTimeout(() => {
-                            if (!checkbox.checked) {
-                                this.style.backgroundColor = '';
-                                this.style.borderColor = '';
-                            }
-                            this.style.transform = '';
-                        }, 200);
-                    }, { passive: true });
+                    label.addEventListener(
+                        "touchend",
+                        function (e) {
+                            // Reset visual state
+                            setTimeout(() => {
+                                if (!checkbox.checked) {
+                                    this.style.backgroundColor = "";
+                                    this.style.borderColor = "";
+                                }
+                                this.style.transform = "";
+                            }, 200);
+                        },
+                        { passive: true }
+                    );
 
                     // Initialize checked state on page load
                     if (checkbox.checked) {
-                        label.classList.add('checked');
+                        label.classList.add("checked");
                     }
                 });
 
                 // Handle form restoration
                 const observer = new MutationObserver((mutations) => {
                     mutations.forEach((mutation) => {
-                        if (mutation.type === 'attributes' && mutation.attributeName === 'checked') {
+                        if (
+                            mutation.type === "attributes" &&
+                            mutation.attributeName === "checked"
+                        ) {
                             const checkbox = mutation.target;
-                            const label = checkbox.closest('.skill-checkbox-label');
+                            const label = checkbox.closest(".skill-checkbox-label");
                             if (label) {
                                 if (checkbox.checked) {
-                                    label.classList.add('checked');
+                                    label.classList.add("checked");
                                 } else {
-                                    label.classList.remove('checked');
+                                    label.classList.remove("checked");
                                 }
                             }
                         }
                     });
                 });
 
-                skillsCheckboxes.forEach(checkbox => {
+                skillsCheckboxes.forEach((checkbox) => {
                     observer.observe(checkbox, { attributes: true });
                 });
             }
@@ -4446,15 +4505,15 @@
             function getBotResponse(message) {
                 const responses = {
                     "điều kiện tham gia là gì?":
-                        "Bạn cần là sinh viên đang học tại Đại học Bách khoa Hà Nội, có tinh thần tình nguyện và nhiệt huyết. Không yêu cầu kinh nghiệm trước đó.",
+                        "Bạn cần là sinh viên từ bất kỳ trường đại học nào, bất kì ngành học nào, có tinh thần tình nguyện và nhiệt huyết. Không yêu cầu kinh nghiệm trước đó.",
                     "quy trình tuyển chọn như thế nào?":
-                        "Quy trình gồm 3 vòng: Vòng đơn (22/09-28/09), Vòng phỏng vấn (29/09), và Vòng tập huấn (03/10-31/10).",
+                        "Quy trình gồm 3 vòng: Vòng đơn (22/09-01/10), Vòng phỏng vấn (03/10-04/10), và Vòng tập huấn (06/10-02/11).",
                     "thời gian hoạt động ra sao?":
-                        "Đội có hoạt động thường xuyên vào cuối tuần và các buổi tối. Thời gian cụ thể sẽ được thông báo trước để bạn sắp xếp lịch học.",
+                        "Đội có hoạt động thường xuyên vào buổi chiều thứ 3(17h50)",
                     "có nhận chứng nhận không?":
                         "Có! Bạn sẽ nhận được chứng nhận tham gia hoạt động tình nguyện từ nhà trường và các chứng nhận khác tùy theo mức độ đóng góp.",
                     "liên hệ như thế nào?":
-                        "Bạn có thể liên hệ qua Fanpage: Đội Tình nguyện CTES, TikTok: @doitinhnguyenctes11, Email: ctes.doitinhnguyen.hust@gmail.com hoặc Đội trưởng: Phạm Trí Linh – 0943174698",
+                        "Bạn có thể liên hệ qua Fanpage: Đội Tình nguyện CTES, TikTok: @doitinhnguyenctes11, Email: ctes.doitinhnguyen.hust@gmail.com hoặc Đội trưởng: Nguyễn Khắc Quang - 0978895284",
                 };
 
                 const lowercaseMessage = message.toLowerCase();
@@ -4468,7 +4527,8 @@
                     }
                 }
 
-                return "Cảm ơn bạn đã hỏi! Để được hỗ trợ tốt nhất, bạn có thể liên hệ trực tiếp với chúng mình qua Fanpage: Đội Tình nguyện CTES hoặc số điện thoại: 0943174698. 😊";
+                return "Cảm ơn bạn đã hỏi! Để được hỗ trợ tốt nhất, bạn có thể liên hệ trực tiếp với chúng mình qua Fanpage: <a style='color: #1877f2; text-decoration: none;' href='https://www.facebook.com/tinhnguyenctes' target='_blank'><i class='fab fa-facebook-f'></i> Đội Tình nguyện Các chương trình Chất lượng cao - CTES</a> hoặc số điện thoại: 0978895284. 😊";
+
             }
         </script>
         <script>
