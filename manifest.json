@@ -1,7 +1,7 @@
 {
-    "name": "Tuyển Thành Viên K16 - Đội Tình nguyện Các chương trình Chất lượng cao - CTES",
-    "short_name": "Tuyển Thành Viên - K16",
-    "description": "Tuyển thành viên K16 - Đội Tình Nguyện Các chương trình Chất lượng cao CTES",
+    "name": "Tuyển Thành Viên K17 - Đội Tình nguyện Các chương trình Chất lượng cao - CTES",
+    "short_name": "Tuyển Thành Viên - K17",
+    "description": "Tuyển thành viên K17 - Đội Tình Nguyện Các chương trình Chất lượng cao CTES",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
@@ -26,7 +26,7 @@
     ],
     "screenshots": [
         {
-            "src": "https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/banner.png",
+            "src": "https://raw.githubusercontent.com/Trantoan12022004/host_image_page_anhtonton/main/images/tuyenquan/banner1.png",
             "sizes": "1280x720",
             "type": "image/png",
             "form_factor": "wide"
